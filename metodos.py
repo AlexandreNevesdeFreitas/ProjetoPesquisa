@@ -1,5 +1,6 @@
 import numpy as np
 import time
+import pandas as pd
 import matplotlib.pyplot as plt
 from decimal import Decimal, getcontext
 
@@ -11,17 +12,17 @@ def esferico_para_cartesiano(raio, theta, phi):
     z = raio * np.cos(theta)
     return np.array([x, y, z])
 
-def sortea_theta():
+def sorteia_theta():
     return np.random.uniform(0, np.pi)
 
-def sortea_phi():
+def sorteia_phi():
     return np.random.uniform(0, 2 *np.pi)
 
-def sortea_pontos(qtde_sorteios, raio, centro, eixo, theta):
+def sorteia_pontos(qtde_sorteios, raio, centro, eixo, theta):
     pts_no_angulo_solido = 0
     for i in range(qtde_sorteios):
-        theta_sorteado = sortea_theta()
-        phi_sorteado = sortea_phi()
+        theta_sorteado = sorteia_theta()
+        phi_sorteado = sorteia_phi()
 
         ponto = esferico_para_cartesiano(raio, theta_sorteado, phi_sorteado)
 
@@ -77,4 +78,31 @@ def obter_tendencia_angulo_solido(valores_angulo_solido, sorteios, ax=None):
 def gerar_arquivo(sorteios, angulo_solido, tempo_sorteio, arquivo):
     erro = angulo_solido - np.pi
     with open(arquivo, 'a') as f:
-        f.write(f'{sorteios}        {angulo_solido}        {erro}          {tempo_sorteio}\n')
+        f.write(f'\n{sorteios}        {angulo_solido}        {erro}          {tempo_sorteio}\n')
+
+def ler_dados(arquivo):
+    # Leitura do arquivo para um DataFrame do Pandas
+    df = pd.read_csv(arquivo, delimiter='\s+', header=None, 
+                     names=['Sorteios', 'Angulo_Solido', 'Erro', 'Tempo_Sorteio'])
+    return df
+    
+
+def plotar_graficos(df):
+    # Exemplo de plotagem, ajuste conforme necessário
+    plt.figure(figsize=(10, 6))
+
+    # Exemplo de gráfico de dispersão (scatter plot)
+    plt.scatter(df['Sorteios'], df['Angulo_Solido'], c='blue', label='Angulo_Solido vs Sorteios')
+    plt.xlabel('Sorteios')
+    plt.ylabel('Angulo_Solido')
+    plt.title('Relação entre Sorteios e Angulo_Solido')
+    plt.legend()
+
+    # Exemplo de histograma
+    plt.figure(figsize=(10, 6))
+    plt.hist(df['Erro'], bins=20, edgecolor='black')
+    plt.xlabel('Erro')
+    plt.ylabel('Frequência')
+    plt.title('Histograma do Erro')
+
+    plt.show()

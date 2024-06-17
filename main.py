@@ -12,6 +12,7 @@ eixo_cone = np.array([0, 0, 1])
 theta = np.pi / 4
 sorteios = [10**0, 10**1, 10**2, 10**3, 10**4, 10**5]
 # , 10**6, 10**7, 10**8]
+# 20000, 40000, 600000, 80000 e 100000
 
 resultados = []
 valores = []
@@ -21,7 +22,7 @@ arquivo = "resultados.txt"
 inicio = time.time()
 for i, qtde_sorteios in enumerate(sorteios):
     tempo_inicio = time.time()
-    pts_no_angulo_solido = sortea_pontos(qtde_sorteios, raio, centro, eixo_cone, theta)
+    pts_no_angulo_solido = sorteia_pontos(qtde_sorteios, raio, centro, eixo_cone, theta)
     tempo_fim = time.time()
 
     valor = ((4 * np.pi) * pts_no_angulo_solido) / qtde_sorteios
