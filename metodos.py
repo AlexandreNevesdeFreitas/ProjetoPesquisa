@@ -46,11 +46,13 @@ def obter_resultados(pts_no_angulo_solido, qtde_sorteios):
     rotulos = ['Dentro do ângulo sólido', 'Fora do ângulo sólido']
     porcentagens = [porcentagem_dentro, porcentagem_fora]
 
+    # fig, ax = plt.subplots(3,1(figsize=(6,6)))
+
     plt.bar(rotulos, porcentagens, color = ['red', 'blue'])
     plt.ylabel('Porcentagem')
-    plt.title('Porcentagem de Pontos Dentro/Fora do Ãngulo SÃ³lido')
+    plt.title('Porcentagem de Pontos Dentro/Fora do ângulo sólido')
     plt.ylim(0, 100)
-    plt.show()
 
     angulo_solido_parcial = ((4 * np.pi) * pts_no_angulo_solido) / qtde_sorteios
-    print("Ângulo sólido parcial: ", angulo_solido_parcial)
+    print("ângulo sólido parcial: ", angulo_solido_parcial)
+    plt.show()
