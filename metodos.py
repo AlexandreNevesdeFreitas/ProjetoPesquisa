@@ -34,12 +34,10 @@ def sortea_pontos(qtde_sorteios, raio, centro, eixo, theta):
 
         if cos_angulo >= cos_theta:
             pts_no_angulo_solido += 1
-            #print(ponto)
+    
     return pts_no_angulo_solido
 
-def obter_resultados(pts_no_angulo_solido, qtde_sorteios):
-    print("Contador de pontos: ", pts_no_angulo_solido)
-    
+def obter_resultados(pts_no_angulo_solido, qtde_sorteios):    
     porcentagem_dentro = (pts_no_angulo_solido / qtde_sorteios) * 100
     porcentagem_fora = 100 - porcentagem_dentro
 
@@ -54,5 +52,4 @@ def obter_resultados(pts_no_angulo_solido, qtde_sorteios):
     plt.ylim(0, 100)
 
     angulo_solido_parcial = ((4 * np.pi) * pts_no_angulo_solido) / qtde_sorteios
-    print("ângulo sólido parcial: ", angulo_solido_parcial)
     plt.show()
