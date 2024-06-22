@@ -37,19 +37,22 @@ def sortea_pontos(qtde_sorteios, raio, centro, eixo, theta):
     
     return pts_no_angulo_solido
 
-def obter_resultados(pts_no_angulo_solido, qtde_sorteios):    
+def obter_resultados(pts_no_angulo_solido, qtde_sorteios, ax=None):    
     porcentagem_dentro = (pts_no_angulo_solido / qtde_sorteios) * 100
     porcentagem_fora = 100 - porcentagem_dentro
 
     rotulos = ['Dentro do ângulo sólido', 'Fora do ângulo sólido']
     porcentagens = [porcentagem_dentro, porcentagem_fora]
 
-    # fig, ax = plt.subplots(3,1(figsize=(6,6)))
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(6, 6))
+    bars = ax.bar(rotulos, porcentagens, color=['red', 'blue'])
+    ax.set_ylabel('Porcentagem')
+    ax.set_title(f'sorteios: {qtde_sorteios}')
+    ax.set_ylim(0, 100)
 
-    plt.bar(rotulos, porcentagens, color = ['red', 'blue'])
-    plt.ylabel('Porcentagem')
-    plt.title('Porcentagem de Pontos Dentro/Fora do ângulo sólido')
-    plt.ylim(0, 100)
+    for bar, percent in zip(bars, porcentagens):
+        height = bar.get_height()
+        ax.text(bar.get_x() + bar.get_width() / 2, height + 1, f'{percent:.1f}%', ha='center', va='bottom')
 
-    angulo_solido_parcial = ((4 * np.pi) * pts_no_angulo_solido) / qtde_sorteios
-    plt.show()
+    return ax

@@ -27,6 +27,17 @@ for i, qtde_sorteios in enumerate(sorteios):
 
     obter_resultados(pts_no_angulo_solido, qtde_sorteios)
 
+fig, axs = plt.subplots(1, len(resultados), figsize=(18, 6))
+
+# Plotagem dos gráficos para cada resultado
+for i, resultado in enumerate(resultados):
+    pts_no_angulo_solido = resultado["Pontos no ângulo sólido: "]
+    qtde_sorteios = sorteios[i]
+    obter_resultados(pts_no_angulo_solido, qtde_sorteios, ax=axs[i])
+
+# Ajustes de layout e exibição final dos gráficos
+plt.tight_layout()
+plt.show()
 
 fim =  time.time()
 
