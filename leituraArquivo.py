@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 
 
 
@@ -17,27 +18,35 @@ def plotar_graficos(df):
 
     # Gráfico 1: Sorteios vs Angulo_Solido
     plt.subplot(1, 3, 1)
-    plt.scatter(df['Sorteios'], df['Angulo_Solido'], c='blue', label='Angulo_Solido vs Sorteios')
+    plt.scatter(df['Sorteios'], df['Angulo_Solido'], c='blue', label='Angulo_Solido x Sorteios')
     plt.xlabel('Sorteios')
     plt.ylabel('Angulo_Solido')
     plt.title('Relação entre Sorteios e Angulo_Solido')
+    plt.axhline(y=np.pi, color='r', linestyle='--', label='π')
     plt.legend()
+    plt.ylim(-3, 6)
+
 
     # Gráfico 2: Sorteios vs Erro
     plt.subplot(1, 3, 2)
-    plt.scatter(df['Sorteios'], df['Erro'], c='red', label='Erro vs Sorteios')
+    plt.scatter(df['Sorteios'], df['Erro'], c='red', label='Erro x Sorteios')
     plt.xlabel('Sorteios')
     plt.ylabel('Erro')
     plt.title('Relação entre Sorteios e Erro')
     plt.legend()
+    plt.ylim(-3, 3)
 
     # Gráfico 3: Sorteios vs Tempo_Sorteio
     plt.subplot(1, 3, 3)
-    plt.scatter(df['Sorteios'], df['Tempo_Sorteio'], c='green', label='Tempo_Sorteio vs Sorteios')
+    plt.scatter(df['Sorteios'], df['Tempo_Sorteio'], c='green', label='Tempo_Sorteio x Sorteios')
     plt.xlabel('Sorteios')
     plt.ylabel('Tempo_Sorteio')
     plt.title('Relação entre Sorteios e Tempo_Sorteio')
     plt.legend()
+    max_sorteios = df['Sorteios'].max()
+    max_tempo = df['Tempo_Sorteio'].max()
+    plt.plot([0, max_sorteios], [0, max_tempo], linestyle='-', color='blue', label='Linearidade')
+    
 
     plt.tight_layout()
     plt.show()
