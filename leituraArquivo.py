@@ -5,7 +5,6 @@ import numpy as np
 
 
 def ler_dados(arquivo):
-    # Leitura do arquivo para um DataFrame do Pandas
     df = pd.read_csv(arquivo, delimiter='\s+', header=None, 
                      names=['Sorteios', 'Angulo_Solido', 'Erro', 'Tempo_Sorteio'])
     return df
@@ -13,7 +12,6 @@ def ler_dados(arquivo):
 
 
 def plotar_graficos(df):
-    # Exemplo de plotagem, ajuste conforme necessário
     plt.figure(figsize=(18, 6))
 
     # Gráfico 1: Sorteios vs Angulo_Solido
