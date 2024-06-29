@@ -7,7 +7,10 @@ Utilizamos a seguinte fórmula para cálculo:
 
     $\Omega$ = $\\frac{(4 * \pi) * \text{Pontos no angulo sólido}}{\text{Total de pontos sorteados}} \$
 
-
+<!--
+- Gerar gráficos que facilitam a análise dos resultados. Os gráficos gerados incluem:
+- 
+-->
 
 
 <!--
