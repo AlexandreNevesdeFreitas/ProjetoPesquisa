@@ -82,24 +82,20 @@ def gerar_arquivo(sorteios, angulo_solido, tempo_sorteio, arquivo):
         f.write(f'\n{sorteios}        {angulo_solido}        {erro}          {tempo_sorteio}\n')
 
 def ler_dados(arquivo):
-    # Leitura do arquivo para um DataFrame do Pandas
     df = pd.read_csv(arquivo, delimiter='\s+', header=None, 
                      names=['Sorteios', 'Angulo_Solido', 'Erro', 'Tempo_Sorteio'])
     return df
     
 
 def plotar_graficos(df):
-    # Exemplo de plotagem, ajuste conforme necessário
     plt.figure(figsize=(10, 6))
 
-    # Exemplo de gráfico de dispersão (scatter plot)
     plt.scatter(df['Sorteios'], df['Angulo_Solido'], c='blue', label='Angulo_Solido vs Sorteios')
     plt.xlabel('Sorteios')
     plt.ylabel('Angulo_Solido')
     plt.title('Relação entre Sorteios e Angulo_Solido')
     plt.legend()
 
-    # Exemplo de histograma
     plt.figure(figsize=(10, 6))
     plt.hist(df['Erro'], bins=20, edgecolor='black')
     plt.xlabel('Erro')
@@ -107,3 +103,17 @@ def plotar_graficos(df):
     plt.title('Histograma do Erro')
 
     plt.show()
+
+def update_plot(event, resultados, fig, ax, current_plot):
+    if event.key == 'right':
+        current_plot[0] = (current_plot[0] + 1) % len(resultados)
+    elif event.key == 'left':
+        current_plot[0] = (current_plot[0] - 1) % len(resultados)
+    elif event.key == 'escape':
+        plt.close()
+        return
+    
+    resultado = resultados[current_plot[0]]
+    ax.clear()
+    obter_resultados(resultado.get_pontos_no_angulo_solido(), resultado.get_qtde_sorteios(), ax=ax)
+    fig.canvas.draw()

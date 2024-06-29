@@ -27,4 +27,7 @@ class Resultado:
     def set_pontos_no_angulo_solido(self, pts_no_angulo_solido):
         self._pontos_no_angulo_solido = pts_no_angulo_solido
     
-    
+    def __str__(self):
+        return f"Quantidade de sorteios: {self._qtde_sorteios}\n" \
+            f"Pontos no ângulo sólido: {self._pontos_no_angulo_solido}\n" \
+            f"Valor do ângulo sólido: {self._valor_angulo_solido}\n"
