@@ -7,10 +7,24 @@ Utilizamos a seguinte fórmula para cálculo:
 
     $\Omega$ = $\\frac{(4 * \pi) * \text{Pontos no angulo sólido}}{\text{Total de pontos sorteados}} \$
 
-<!--
+
 - Gerar gráficos que facilitam a análise dos resultados. Os gráficos gerados incluem:
-- 
--->
+    - Gráfico de tendência (Ângulo Sólido x \pi)
+ 
+      <img src="images/tendenciaApi.png" alt="Texto Alternativo" width="500" align="center">
+    
+    - Gráfico de relação Erro x Sorteios
+
+       <img src="images/sorteiosXerro.png" alt="Texto Alternativo" width="500" align="center">
+       
+    - Gráfico de relação Sorteios x Tempo
+ 
+       <img src="images/sorteioXtempo.png" alt="Texto Alternativo" width="500" align="center">
+
+     
+
+
+
 
 
 <!--
